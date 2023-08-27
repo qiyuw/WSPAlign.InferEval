@@ -4,7 +4,26 @@ This project provides the inference libarary for [WSPAlign](https://github.com/q
 ## Requirements
 Run `pip install -r requirements.txt` to install the required packages.
 
-## Model list
+### SpaCy
+We use SpaCy to tokenize sentences. For now this libaracy supports six langauges. Declare your source and target langauges with `--src_tokenizer_lang` and `--tgt_tokenizer_lang`.
+
+| Language abbreviation | Language|
+|-------|-------|
+| en | English|
+| ja | Japanese|
+| zh | Chinese|
+| fr | French |
+| de | German |
+| ro | Romanian|
+
+You also need to install Spacy language package with `pip install [ja]` for languages (e.g., ja for Japanese) you want to use.
+
+Please refer to [https://spacy.io/](https://spacy.io/) for more information. You can easily apply languages other than the above six, but note that for now we do not provide finetuned WSPAligner for other languages. WSPAligner in other languages can only perform in a zero-shot way with our pre-trained model.
+
+## Inference
+Run `python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_tokenizer_lang ja --src_text="私は猫が好きです。" --tgt_tokenizer_lang en --tgt_text="I like cats."`
+
+### Model list
 | Model List| Description|
 |-------|-------|
 |[qiyuw/WSPAlign-xlm-base](https://huggingface.co/qiyuw/WSPAlign-xlm-base) | Pretrained on xlm-roberta |
