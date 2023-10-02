@@ -1,5 +1,5 @@
 # WSPAligner-inference
-This project provides the inference libarary for [WSPAlign](https://github.com/qiyuw/WSPAlign).
+This project provides the inference libarary and evaluation scripts for [WSPAlign](https://github.com/qiyuw/WSPAlign).
 
 ## Requirements
 Run `pip install -r requirements.txt` to install the required packages.
@@ -35,7 +35,7 @@ Run `python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_token
 
 Use our model checkpoints with [huggingface](https://huggingface.co/)
 
-## Data preparation
+## Evaluation data preparation
 | Dataset list| Description|
 |-------|-------|
 |[qiyuw/qiyuw/wspalign_acl2023_eval](https://huggingface.co/datasets/qiyuw/wspalign_acl2023_eval)|Evaluation data used in the paper|
