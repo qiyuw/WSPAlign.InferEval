@@ -35,6 +35,15 @@ Run `python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_token
 
 Use our model checkpoints with [huggingface](https://huggingface.co/)
 
+## Data preparation
+| Dataset list| Description|
+|-------|-------|
+|[qiyuw/qiyuw/wspalign_acl2023_eval](https://huggingface.co/datasets/qiyuw/wspalign_acl2023_eval)|Evaluation data used in the paper|
+
+Construction of `Evaluation` dataset can be found at [word_align](https://github.com/nttcslab-nlp/word_align).
+
+Run `download_dataset.sh` to download all the above datasets.
+
 ## Evaluation for WSPAlign Model.
 The project also provides the evaluation script for pretrained and finetuned WSPAlign models, for details of the pre-training and fine-tuning of WSPAlign, please refer to [WSPAlign project](https://github.com/qiyuw/WSPAlign).
 
