@@ -6,7 +6,7 @@ TOKENIZER=$3 # [BERT, ROBERTA]
 TESTFILE_DIR=data/wspalign_acl2023_eval # path to your test files
 
 case "$LANG" in
-   "kftt")  TEXTFILE=$TESTFILE_DIR/kftt/kftt_devtest.json
+   "kftt")  TESTFILE=$TESTFILE_DIR/kftt/kftt_devtest.json
             TEXTFILE=$TESTFILE_DIR/kftt/kftt_devtest.txt
             MOSESFILE=$TESTFILE_DIR/kftt/kftt_devtest.moses
             OPTION="-l"

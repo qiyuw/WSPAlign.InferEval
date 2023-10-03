@@ -13,7 +13,7 @@ done
 
 # special handling for kftt
 mkdir $DATA_PATH/wspalign_acl2023_eval/kftt
-for MODE in moses text json
+for MODE in moses txt json
 do
     wget https://huggingface.co/datasets/qiyuw/wspalign_acl2023_eval/resolve/main/kftt/kftt_devtest."$MODE" -O "$DATA_PATH"/wspalign_acl2023_eval/kftt/kftt_devtest."$MODE"
 done
