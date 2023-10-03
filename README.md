@@ -37,21 +37,21 @@ Use our model checkpoints with [huggingface](https://huggingface.co/)
 
 Note: For Japanese, Chinese, and other asian languages, we recommend to use mbert-based models like `qiyuw/WSPAlign-mbert-base` or `qiyuw/WSPAlign-ft-kftt` for better performance as we discussed in the original paper: [WSPAlign: Word Alignment Pre-training via Large-Scale Weakly Supervised Span Prediction](https://aclanthology.org/2023.acl-long.621/) (ACL 2023).
 
-## Evaluation data preparation
+## Evaluation preparation
 | Dataset list| Description|
 |-------|-------|
 |[qiyuw/qiyuw/wspalign_acl2023_eval](https://huggingface.co/datasets/qiyuw/wspalign_acl2023_eval)|Evaluation data used in the paper|
 
 Construction of `Evaluation` dataset can be found at [word_align](https://github.com/nttcslab-nlp/word_align).
 
-Run `download_dataset.sh` to download all the above datasets.
+Go `evaluate/` for evaluation. Run `download_dataset.sh` to download all the above datasets. Then download `aer.py` from [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master) by `wget https://raw.githubusercontent.com/lilt/alignment-scripts/master/scripts/aer.py`. Noted that we made minor modification on `aer.py`, so we provided a modified version that is ready to use in this repository, while the copyright for this script still belongs to [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master).
 
 ## Evaluation for WSPAlign Model.
 The project also provides the evaluation script for pretrained and finetuned WSPAlign models, for details of the pre-training and fine-tuning of WSPAlign, please refer to [WSPAlign project](https://github.com/qiyuw/WSPAlign).
 
-After running `finetune.sh`, `fewshot.sh` or `zeroshot.sh`, you will get the predicted alignment stored in `[YOUR OUTPUT DIR]/nbest_predictions_.json`. (e.g., `/data/local/qiyuw/WSPAlign/experiments-zeroshot-2023-08-03/zeroshot/deen/nbest_predictions_.json`)
+After running `finetune.sh`, `fewshot.sh` or `zeroshot.sh` in [WSPAlign](https://github.com/qiyuw/WSPAlign), you will get the predicted alignment stored in `[YOUR OUTPUT DIR]/nbest_predictions_.json`. (e.g., `/data/local/qiyuw/WSPAlign/experiments-zeroshot-2023-08-03/zeroshot/deen/nbest_predictions_.json`)
 
-Then run `cd evaluate` and `bash postprocess.sh [YOUR OUTPUT DIR]/nbest_predictions_.json [LANG] [TOKENIZER]`. The script will take care of the alignment transformation and evaluation. `[LANG]` can be chosen from `[deen, kftt, roen, enfr]`, and `[TOKENIZER]` can be chosen from `[BERT, ROBERTA]`.
+Then go to `evaluate/` and run `bash postprocess.sh [YOUR OUTPUT DIR]/nbest_predictions_.json [LANG] [TOKENIZER]`. The script will take care of the alignment transformation and evaluation. `[LANG]` can be chosen from `[deen, kftt, roen, enfr]`, and `[TOKENIZER]` can be chosen from `[BERT, ROBERTA]`.
 
 See [evaluate/postprocess.sh](evaluate/postprocess.sh) for details.
 
