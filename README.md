@@ -44,7 +44,11 @@ Note: For Japanese, Chinese, and other asian languages, we recommend to use mber
 
 Construction of `Evaluation` dataset can be found at [word_align](https://github.com/nttcslab-nlp/word_align).
 
-Go `evaluate/` for evaluation. Run `download_dataset.sh` to download all the above datasets. Then download `aer.py` from [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master) by `wget https://raw.githubusercontent.com/lilt/alignment-scripts/master/scripts/aer.py`. Noted that we made minor modification on `aer.py`, so we provided a modified version that is ready to use in this repository, while the copyright for this script still belongs to [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master).
+Go `evaluate/` for evaluation. Run `download_dataset.sh` to download all the above datasets.
+
+Then download `aer.py` from [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master) by `wget https://raw.githubusercontent.com/lilt/alignment-scripts/master/scripts/aer.py`.
+
+Noted that we made minor modification on `aer.py` to avoid excutation errors, so we provided a modified version that is ready to use in this repository (try `diff aer1.py aer2.py` to see the difference), while the copyright for this script still belongs to [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master).
 
 ## Evaluation for WSPAlign Model.
 The project also provides the evaluation script for pretrained and finetuned WSPAlign models, for details of the pre-training and fine-tuning of WSPAlign, please refer to [WSPAlign project](https://github.com/qiyuw/WSPAlign).
