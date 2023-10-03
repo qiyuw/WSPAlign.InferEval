@@ -35,6 +35,8 @@ Run `python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_token
 
 Use our model checkpoints with [huggingface](https://huggingface.co/)
 
+Note: For Japanese, Chinese, and other asian languages, we recommend to use mbert-based models like `qiyuw/WSPAlign-mbert-base` or `qiyuw/WSPAlign-ft-kftt` for better performance as we discussed in the original paper: [WSPAlign: Word Alignment Pre-training via Large-Scale Weakly Supervised Span Prediction](https://aclanthology.org/2023.acl-long.621/) (ACL 2023).
+
 ## Evaluation data preparation
 | Dataset list| Description|
 |-------|-------|
@@ -52,6 +54,22 @@ After running `finetune.sh`, `fewshot.sh` or `zeroshot.sh`, you will get the pre
 Then run `cd evaluate` and `bash postprocess.sh [YOUR OUTPUT DIR]/nbest_predictions_.json [LANG] [TOKENIZER]`. The script will take care of the alignment transformation and evaluation. `[LANG]` can be chosen from `[deen, kftt, roen, enfr]`, and `[TOKENIZER]` can be chosen from `[BERT, ROBERTA]`.
 
 See [evaluate/postprocess.sh](evaluate/postprocess.sh) for details.
+
+## Citation
+If you use our code or model, please cite our paper:
+```bibtex
+@inproceedings{wu-etal-2023-wspalign,
+    title = "{WSPA}lign: Word Alignment Pre-training via Large-Scale Weakly Supervised Span Prediction",
+    author = "Wu, Qiyu  and Nagata, Masaaki  and Tsuruoka, Yoshimasa",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-long.621",
+    pages = "11084--11099",
+}
+```
 
 ## License
 
