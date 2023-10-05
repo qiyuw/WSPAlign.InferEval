@@ -1,4 +1,4 @@
-# WSPAligner-inference
+# WSPAligner.InferEval
 This project provides the inference libarary and evaluation scripts for [WSPAlign](https://github.com/qiyuw/WSPAlign).
 
 ## Requirements
