@@ -41,6 +41,7 @@ Note: For Japanese, Chinese, and other asian languages, we recommend to use mber
 | Dataset list| Description|
 |-------|-------|
 |[qiyuw/qiyuw/wspalign_acl2023_eval](https://huggingface.co/datasets/qiyuw/wspalign_acl2023_eval)|Evaluation data used in the paper|
+|[qiyuw/wspalign_test_data](https://huggingface.co/datasets/qiyuw/wspalign_test_data)| Test dataset for evaluation|
 
 Construction of `Evaluation` dataset can be found at [word_align](https://github.com/nttcslab-nlp/word_align).
 
@@ -53,11 +54,11 @@ Noted that we made minor modification on `aer.py` to avoid excutation errors, so
 ## Evaluation for WSPAlign Model.
 The project also provides the evaluation script for pretrained and finetuned WSPAlign models, for details of the pre-training and fine-tuning of WSPAlign, please refer to [WSPAlign project](https://github.com/qiyuw/WSPAlign).
 
-After running `finetune.sh`, `fewshot.sh` or `zeroshot.sh` in [WSPAlign](https://github.com/qiyuw/WSPAlign), you will get the predicted alignment stored in `[YOUR OUTPUT DIR]/nbest_predictions_.json`. (e.g., `/data/local/qiyuw/WSPAlign/experiments-zeroshot-2023-08-03/zeroshot/deen/nbest_predictions_.json`)
+After running `zeroshot.sh` with specifying your trained model, you will get the predicted alignment stored in `[YOUR OUTPUT DIR]/nbest_predictions_.json`. (e.g., `/data/local/qiyuw/WSPAlign/experiments-zeroshot-2023-08-03/zeroshot/deen/nbest_predictions_.json`)
 
-Then go to `evaluate/` and run `bash postprocess.sh [YOUR OUTPUT DIR]/nbest_predictions_.json [LANG] [TOKENIZER]`. The script will take care of the alignment transformation and evaluation. `[LANG]` can be chosen from `[deen, kftt, roen, enfr]`, and `[TOKENIZER]` can be chosen from `[BERT, ROBERTA]`.
+Then go to `evaluate/` and run `bash post_evaluate.sh [YOUR OUTPUT DIR]/nbest_predictions_.json [LANG] [TOKENIZER]`. The script will take care of the alignment transformation and evaluation. `[LANG]` can be chosen from `[deen, kftt, roen, enfr]`, and `[TOKENIZER]` can be chosen from `[BERT, ROBERTA]`.
 
-See [evaluate/postprocess.sh](evaluate/postprocess.sh) for details.
+See [evaluate/post_evaluate.sh](evaluate/postprocess.sh) for details.
 
 ## Citation
 If you use our code or model, please cite our paper:
