@@ -189,7 +189,7 @@ def main(args):
             n_pairs += 1
 
         
-    print('{}: {} {} {} ({} {} {})'.format("-----------key", "recall", "precision", "f1", "total_ref", "total_sys", "total_common-----------"))
+    print('----{}: {} {} {} ({} {} {})----'.format("key", "recall", "precision", "f1", "total_ref", "total_sys", "total_common"))
     for key in total_sys.keys():
         recall = total_common[key]/total_ref
         precision = total_common[key]/total_sys[key]

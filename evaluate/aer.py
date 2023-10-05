@@ -201,7 +201,7 @@ if __name__ == "__main__":
                 hypothesis[-1].add(alignment_tuple)
 
     precision, recall, aer, f_measure, errors, source_coverage, target_coverage, internal_jumps, external_jumps = calculate_metrics(sure, possible, hypothesis, args.fAlpha, source, target, args.cleanPunctuation)
-    print("-----------Key: AER (Presicion/Recall/total_sys)-----------")
+    print("----key: AER (Presicion/Recall/total_sys)----")
     print("{0}: {1:.1f}% ({2:.1f}%/{3:.1f}%/{4})".format(args.hypothesis,
                 aer * 100.0, precision * 100.0, recall * 100.0, sum([len(x) for x in hypothesis])))
     if args.fAlpha >= 0.0:
