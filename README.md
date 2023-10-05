@@ -49,18 +49,7 @@ Go `evaluate/` for evaluation. Run `download_dataset.sh` to download all the abo
 
 Then download `aer.py` from [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master) by `wget https://raw.githubusercontent.com/lilt/alignment-scripts/master/scripts/aer.py`
 
-Noted that we made minor modification on `aer.py` to avoid excutation errors, so we provided a modified version that is ready to use in this repository (try `diff aer1.py aer2.py` to see the difference), while the copyright for this script still belongs to [lilt/alignment-scripts](https://github.com/lilt/alignment-scripts/tree/master).
-The difference from the original `aer.py`:
-```
-178,179d177
-<             if "key" in line:
-<                 continue # skip header
-195,196d192
-<             if "key" in line:
-<                 continue # skip header
-204d199
-<     print("----key: AER (Presicion/Recall/total_sys)----")
-```
+We made minor modification on `aer.py` to avoid excutation errors, run `patch -p0 aer.py aer.patch` to update the original script.
 
 ## Evaluation for WSPAlign Model.
 The project also provides the evaluation script for pretrained and finetuned WSPAlign models, for details of the pre-training and fine-tuning of WSPAlign, please refer to [WSPAlign project](https://github.com/qiyuw/WSPAlign).
