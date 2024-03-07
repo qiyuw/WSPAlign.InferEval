@@ -4,8 +4,10 @@ This project provides the inference libarary and evaluation scripts for [WSPAlig
 ## Requirements
 Create conda enviroment with `conda create wspalign-infereval python=3.8`.
 
-Then install pytorch compatible with your own machine, refer to [install pytorch](https://pytorch.org/get-started/previous-versions/). For example, run `pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
-`.
+Then install pytorch compatible with your own machine, refer to [install pytorch](https://pytorch.org/get-started/previous-versions/). For example, run
+```
+pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+```
 
 Finally, install transformers with `pip install transformers`.
 
