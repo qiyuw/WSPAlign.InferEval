@@ -2,10 +2,15 @@
 This project provides the inference libarary and evaluation scripts for [WSPAlign](https://github.com/qiyuw/WSPAlign).
 
 ## Requirements
-Run `pip install -r requirements.txt` to install the required packages.
+Create conda enviroment with `conda create wspalign-infereval python=3.8`.
+
+Then install pytorch compatible with your own machine, refer to [install pytorch](https://pytorch.org/get-started/previous-versions/). For example, run `pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+`.
+
+Finally, install transformers with `pip install transformers`.
 
 ### SpaCy
-We use SpaCy to tokenize sentences. For now this libaracy supports six langauges. Declare your source and target langauges with `--src_tokenizer_lang` and `--tgt_tokenizer_lang`.
+We use SpaCy to split sentences into words. For now this libaracy supports six langauges. Declare your source and target langauges with `--src_lang` and `--tgt_lang`. For the language abbreviation, refer to the following table
 
 | Language abbreviation | Language|
 |-------|-------|
@@ -16,12 +21,25 @@ We use SpaCy to tokenize sentences. For now this libaracy supports six langauges
 | de | German |
 | ro | Romanian|
 
-You also need to install Spacy language package with `pip install [ja]` for languages (e.g., ja for Japanese) you want to use.
+Install Spacy and langauge packages with the following commands:
+```
+pip install -U pip setuptools wheel
+pip install -U spacy
+python -m spacy download zh_core_web_sm
+python -m spacy download en_core_web_sm
+python -m spacy download fr_core_news_sm
+python -m spacy download de_core_news_sm
+python -m spacy download ja_core_news_sm
+python -m spacy download ro_core_news_sm
+```
 
 Please refer to [https://spacy.io/](https://spacy.io/) for more information. You can easily apply languages other than the above six, but note that for now we do not provide finetuned WSPAligner for other languages. WSPAligner in other languages can only perform in a zero-shot way with our pre-trained model.
 
 ## Inference
-Run `python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_tokenizer_lang ja --src_text="私は猫が好きです。" --tgt_tokenizer_lang en --tgt_text="I like cats."`
+Now align words in two sentences with the following example:
+```
+python inference.py --model_name_or_path qiyuw/WSPAlign-ft-kftt --src_lang ja --src_text="私は猫が好きです。" --tgt_lang en --tgt_text="I like cats."
+```
 
 ### Model list
 | Model List| Description|

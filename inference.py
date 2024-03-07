@@ -7,7 +7,6 @@ from transformers import (
     AutoTokenizer,
     pipeline
 )
-from langdetect import detect
 from spacy.lang.en import English
 from spacy.lang.ja import Japanese
 from spacy.lang.fr import French
@@ -25,13 +24,13 @@ language_tokenizer_map = {
         'ro': Romanian,
     } # map of language to tokenizer
 
-def get_tokenizer(args, src_text, tgt_text):
-    if args.src_tokenizer_lang and args.src_tokenizer_lang not in language_tokenizer_map:
-        raise ValueError("Language {} not supported by SpaCy tokenizer.".format(args.src_tokenizer_lang))
-    if args.tgt_tokenizer_lang and args.tgt_tokenizer_lang not in language_tokenizer_map:
-        raise ValueError("Language {} not supported by SpaCy tokenizer.".format(args.tgt_tokenizer_lang))
-    src_lang = args.src_tokenizer_lang if args.src_tokenizer_lang else detect(src_text)
-    tgt_lang = args.tgt_tokenizer_lang if args.tgt_tokenizer_lang else detect(tgt_text)
+def get_tokenizer(args):
+    if args.src_lang and args.src_lang not in language_tokenizer_map:
+        raise ValueError("Language {} not supported by SpaCy tokenizer.".format(args.src_lang))
+    if args.tgt_lang and args.tgt_lang not in language_tokenizer_map:
+        raise ValueError("Language {} not supported by SpaCy tokenizer.".format(args.tgt_lang))
+    src_lang = args.src_lang
+    tgt_lang = args.tgt_lang
     # special case for Chinese
     if src_lang in ['zh-cn', 'zh-tw']:
         src_lang = 'zh'
@@ -128,12 +127,12 @@ if __name__ == "__main__":
         required=True,
         help="Path to pretrained model or model identifier from huggingface.co/models",
     )
-    parser.add_argument("--src_tokenizer_lang", type=str, default=None, help="Language of the SpaCy tokenizer to use.")
-    parser.add_argument("--tgt_tokenizer_lang", type=str, default=None, help="Language of the SpaCy tokenizer to use.")
+    parser.add_argument("--src_lang", type=str, required=True, help="Language of the SpaCy tokenizer to use.")
+    parser.add_argument("--tgt_lang", type=str, required=True, help="Language of the SpaCy tokenizer to use.")
     parser.add_argument("--local_rank", type=int, default=-1, help="local_rank for distributed training on gpus")
     parser.add_argument("--no_cuda", action="store_true", help="Whether not to use CUDA when available")
-    parser.add_argument("--src_text", type=str, default="足利義満（あしかがよしみつ）は室町幕府の第3代征夷大将軍（在位1368年-1394年）である。", required=True, help="Source text to align.")
-    parser.add_argument("--tgt_text", type=str, default="yoshimitsu ashikaga was the 3rd seii taishogun of the muromachi shogunate and reigned from 1368 to 1394.", required=True, help="Target text to align.")
+    parser.add_argument("--src_text", type=str, required=True, help="Source text to align.")
+    parser.add_argument("--tgt_text", type=str, required=True, help="Target text to align.")
     args = parser.parse_args()
 
     # Setup CUDA, GPU & distributed training
@@ -158,7 +157,7 @@ if __name__ == "__main__":
     # tgt_text = "getting a phd requires a lot of hard work."
 
     # SpaCy tokenizer
-    src_tokenizer, tgt_tokenizer, src_lang, tgt_lang = get_tokenizer(args, src_text, tgt_text)
+    src_tokenizer, tgt_tokenizer, src_lang, tgt_lang = get_tokenizer(args)
 
     # use question-answering pipeline for prediction
     pipe = pipeline("question-answering", model=args.model_name_or_path)
