@@ -2,14 +2,21 @@
 This project provides the inference libarary and evaluation scripts for [WSPAlign](https://github.com/qiyuw/WSPAlign).
 
 ## Requirements
-Create conda enviroment with `conda create wspalign-infereval python=3.8`.
+Create conda enviroment with
+```
+conda create wspalign-infereval python=3.8
+conda activate wspalign-infereval
+```
 
 Then install pytorch compatible with your own machine, refer to [install pytorch](https://pytorch.org/get-started/previous-versions/). For example, run
 ```
 pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
 ```
 
-Finally, install transformers with `pip install transformers`.
+Finally, install transformers with
+```
+pip install transformers
+```
 
 ### SpaCy
 We use SpaCy to split sentences into words. For now this libaracy supports six langauges. Declare your source and target langauges with `--src_lang` and `--tgt_lang`. For the language abbreviation, refer to the following table
